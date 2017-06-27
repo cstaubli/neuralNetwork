@@ -20,7 +20,7 @@ class NeuralNetwork(object):
         self.learningrate = learningrate
 
         # activation function is the sigmoid function
-        self.activation_function = scipy.special.expit()
+        self.activation_function = lambda x: scipy.special.expit(x)
 
     def train(self, inputs_list, targets_list):
         """train the neural network"""
@@ -70,10 +70,3 @@ class NeuralNetwork(object):
         final_outputs = self.activation_function(final_inputs)
 
         return final_outputs
-
-input_nodes = 3
-hidden_nodes = 3
-output_nodes = 3
-learning_rate = 0.3
-
-n = NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
