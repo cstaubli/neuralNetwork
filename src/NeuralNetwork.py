@@ -2,7 +2,7 @@ import numpy
 import scipy.special
 
 class NeuralNetwork(object):
-    """my neural network"""
+    "my neural network"
     def __init__(self, inputnodes, hiddennodes, outputnodes, learningrate):
         # set number of nodes in each input, hidden, output layer
         self.inodes = inputnodes
@@ -23,7 +23,7 @@ class NeuralNetwork(object):
         self.activation_function = lambda x: scipy.special.expit(x)
 
     def train(self, inputs_list, targets_list):
-        """train the neural network"""
+        "train the neural network"
         # convert inputs list to 2d array
         inputs = numpy.array(inputs_list, ndmin=2).T
         targets = numpy.array(targets_list, ndmin=2).T
@@ -56,7 +56,7 @@ class NeuralNetwork(object):
         self.wih += self.learningrate * wihdot
 
     def query(self, inputs_list):
-        """query the neural network"""
+        "query the neural network"
         inputs = numpy.array(inputs_list, ndmin=2).T
 
         # calculate signals into hidden layer
