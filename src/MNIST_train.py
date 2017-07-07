@@ -6,7 +6,7 @@ data_file_train = open("../../Downloads/mnist_train.csv", "r")
 data_list_train = data_file_train.readlines()
 data_file_train.close()
 
-data_file_test = open("data/mnist_test_10.csv", "r")
+data_file_test = open("../../Downloads/mnist_test.csv", "r")
 data_list_test = data_file_test.readlines()
 data_file_test.close()
 
@@ -22,11 +22,11 @@ data_file_test.close()
 
 # number of input, hidden and output nodes
 INPUT_NODES = 784
-HIDDEN_NODES = 200
+HIDDEN_NODES = 400
 OUTPUT_NODES = 10
 
 # learning rate
-LEARNING_RATE = 0.1
+LEARNING_RATE = 0.2
 
 # create instance of neural network
 nn = NeuralNetwork(INPUT_NODES, HIDDEN_NODES, OUTPUT_NODES, LEARNING_RATE)
@@ -44,7 +44,7 @@ for e in range(EPOCHS):
         pass
     pass
 
-scorecard = []
+SCORECARD = []
 
 for record in data_list_test:
     all_values = record.split(',')
@@ -54,11 +54,11 @@ for record in data_list_test:
     label = np.argmax(outputs)
     if (label == correct_label):
         print("correct, found {0}".format(label))
-        scorecard.append(1)
+        SCORECARD.append(1)
     else:
         print("wrong, found {0} excpected {1}".format(label, correct_label))
-        scorecard.append(0)
+        SCORECARD.append(0)
 
-scorecard_array = np.asarray(scorecard)
+scorecard_array = np.asarray(SCORECARD)
 perf = scorecard_array.sum() / (scorecard_array.size * 1.0)
 print ("performance = {0:5f}".format(perf))
