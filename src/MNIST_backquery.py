@@ -10,15 +10,11 @@ learning_rate = 0.2
 
 nn = NeuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
 
-data_file_train = open("data/mnist_train_100.csv", "r")
+data_file_train = open("../../Downloads/mnist_train.csv", "r")
 data_list_train = data_file_train.readlines()
 data_file_train.close()
 
-data_file_test = open("data/mnist_test_10.csv", "r")
-data_list_test = data_file_test.readlines()
-data_file_test.close()
-
-epochs = 5
+epochs = 2
 
 for e in range(epochs):
     for record in data_list_train:
@@ -30,10 +26,13 @@ for e in range(epochs):
         pass
     pass
 
-label = 9
-targets = np.zeros(output_nodes) + 0.01
-targets[label] = 0.99
-print(targets)
-image_data = nn.backquery(targets)
-pp.imshow(image_data.reshape(28,28), cmap='Greys', interpolation='None')
-pp.show()
+for e in range(0, 10):
+    label = e
+    targets = np.zeros(output_nodes) + 0.01
+    targets[label] = 0.99
+    print(targets)
+    image_data = nn.backquery(targets)
+    pp.imshow(image_data.reshape(28,28), cmap='Greys', interpolation='None')
+    pp.savefig("build/{0}.png".format(label))
+    # pp.show()
+    pass
