@@ -27,7 +27,7 @@ OUTPUT_NODES = 10
 
 for lr in range(1, 9, 1):
     # learning rate
-    LEARNING_RATE = lr * 0.1
+    LEARNING_RATE = lr * 0.02
 
     # create instance of neural network
     nn = NeuralNetwork(INPUT_NODES, HIDDEN_NODES, OUTPUT_NODES, LEARNING_RATE)
