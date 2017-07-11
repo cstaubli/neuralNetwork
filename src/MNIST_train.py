@@ -2,11 +2,11 @@ import numpy as np
 # import matplotlib.pyplot
 from NeuralNetwork import NeuralNetwork
 
-data_file_train = open("data/mnist_train_100.csv", "r")
+data_file_train = open("../../Downloads/mnist_train_100.csv", "r")
 data_list_train = data_file_train.readlines()
 data_file_train.close()
 
-data_file_test = open("data/mnist_test_10.csv", "r")
+data_file_test = open("../../Downloads/mnist_test_10.csv", "r")
 data_list_test = data_file_test.readlines()
 data_file_test.close()
 
