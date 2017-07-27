@@ -16,9 +16,9 @@ INPUT_NODES = 784
 HIDDEN_NODES = 200
 OUTPUT_NODES = 10
 
-for lr in range(1, 9, 1):
+for lr in range(2, 9, 1):
     # learning rate
-    LEARNING_RATE = lr * 0.02
+    LEARNING_RATE = lr * 0.05
 
     # create instance of neural network
     nn = NeuralNetwork(INPUT_NODES, HIDDEN_NODES, OUTPUT_NODES, LEARNING_RATE)
