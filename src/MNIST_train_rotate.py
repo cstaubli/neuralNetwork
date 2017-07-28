@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.ndimage
 from NeuralNetwork import NeuralNetwork
+import time
 
 data_file_train = open("../../Downloads/mnist_train.csv", "r")
 data_list_train = data_file_train.readlines()
@@ -18,6 +19,7 @@ OUTPUT_NODES = 10
 for lr in range(1, 9, 1):
     # learning rate
     LEARNING_RATE = lr * 0.02
+    print("setting learning rate to {0}".format(LEARNING_RATE))
 
     # create instance of neural network
     nn = NeuralNetwork(INPUT_NODES, HIDDEN_NODES, OUTPUT_NODES, LEARNING_RATE)
@@ -26,6 +28,7 @@ for lr in range(1, 9, 1):
     EPOCHS = 5
 
     for e in range(EPOCHS):
+        start_time = time.time()
         for record in data_list_train:
             all_values = record.split(',')
             # adjust greyscale 0-255 to value from 0.01 to 1 and add 0.01 to prevent zero values
