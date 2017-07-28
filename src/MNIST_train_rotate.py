@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.ndimage
 from NeuralNetwork import NeuralNetwork
+import tensorboard_logger as tl
 import time
 
 data_file_train = open("../../Downloads/mnist_train.csv", "r")
@@ -10,6 +11,9 @@ data_file_train.close()
 data_file_test = open("../../Downloads/mnist_test.csv", "r")
 data_list_test = data_file_test.readlines()
 data_file_test.close()
+
+# configure tensorboard_logger
+tl.configure(logdir="runs/rotate", flush_secs=5)
 
 # number of input, hidden and output nodes
 INPUT_NODES = 784
@@ -29,6 +33,7 @@ for lr in range(1, 9, 1):
 
     for e in range(EPOCHS):
         start_time = time.time()
+        i = 0
         for record in data_list_train:
             all_values = record.split(',')
             # adjust greyscale 0-255 to value from 0.01 to 1 and add 0.01 to prevent zero values
@@ -45,6 +50,9 @@ for lr in range(1, 9, 1):
             # and train also with rotated data
             nn.train(inputs_plus10.reshape(784), targets)
             nn.train(inputs_minus10.reshape(784), targets)
+            logval = e * i
+            tl.log_value(name="record*epoch", value=logval, step=i)
+            i += 1
             
         duration = time.time() - start_time
         print("run {0} is complete, duration was {1:0.2f} seconds".format(e, duration))
