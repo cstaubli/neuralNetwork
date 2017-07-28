@@ -35,6 +35,7 @@ for lr in range(1, 9, 1):
             targets[int(all_values[0])] = 0.99
             # and train
             nn.train(inputs, targets)
+            
         duration = time.time() - start_time
         print("run {0} is complete, duration was {1:0.2f} seconds".format(e, duration))
 
