@@ -10,16 +10,6 @@ data_file_test = open("../../Downloads/mnist_test.csv", "r")
 data_list_test = data_file_test.readlines()
 data_file_test.close()
 
-# first_line = data_list_train[0].split(',')
-# image_array = np.asfarray(first_line[1:]).reshape((28, 28))
-# matplotlib.pyplot.imshow(image_array, cmap='Greys', interpolation=None)
-# matplotlib.pyplot.show()
-
-# adjust greyscale 0-255 to value from 0.01 to 1
-# add 0.01 to remove zero values 
-# scaled_input = (np.asfarray(first_line[1:]) / 255.0 * 0.99) + 0.01
-# print(scaled_input)
-
 # number of input, hidden and output nodes
 INPUT_NODES = 784
 HIDDEN_NODES = 200
@@ -38,12 +28,15 @@ for lr in range(1, 9, 1):
     for e in range(EPOCHS):
         for record in data_list_train:
             all_values = record.split(',')
+            # adjust greyscale 0-255 to value from 0.01 to 1 and add 0.01 to prevent zero values
             inputs = (np.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
             targets = np.zeros(OUTPUT_NODES) + 0.01
+            # set target number
             targets[int(all_values[0])] = 0.99
+            # and train
             nn.train(inputs, targets)
-            pass
-        pass
+        duration = time.time() - start_time
+        print("run {0} is complete, duration was {1:0.2f} seconds".format(e, duration))
 
     SCORECARD = []
 

@@ -32,7 +32,7 @@ for lr in range(2, 9, 1):
         start_time = time.time()
         for record in data_list_train:
             all_values = record.split(',')
-            # prevent zeroes as input
+            # adjust greyscale 0-255 to value from 0.01 to 1 and add 0.01 to prevent zero values
             inputs = (np.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
             targets = np.zeros(OUTPUT_NODES) + 0.01
             # set target number
