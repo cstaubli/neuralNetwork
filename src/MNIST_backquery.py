@@ -18,7 +18,7 @@ epochs = 2
 
 for e in range(epochs):
     for record in data_list_train:
-        all_values = record.split(',')
+        all_values = record.split(",")
         inputs = (np.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
         targets = np.zeros(output_nodes) + 0.01
         targets[int(all_values[0])] = 0.99
@@ -32,7 +32,7 @@ for e in range(0, 10):
     targets[label] = 0.99
     print(targets)
     image_data = nn.backquery(targets)
-    pp.imshow(image_data.reshape(28,28), cmap='Greys', interpolation='None')
+    pp.imshow(image_data.reshape(28, 28), cmap="Greys", interpolation="None")
     pp.savefig("build/{0}.png".format(label))
     # pp.show()
     pass

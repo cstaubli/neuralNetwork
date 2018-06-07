@@ -31,7 +31,7 @@ for lr in range(2, 9, 1):
     for e in range(EPOCHS):
         start_time = time.time()
         for record in data_list_train:
-            all_values = record.split(',')
+            all_values = record.split(",")
             # adjust greyscale 0-255 to value from 0.01 to 1 and add 0.01 to prevent zero values
             inputs = (np.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
             targets = np.zeros(OUTPUT_NODES) + 0.01
@@ -39,7 +39,7 @@ for lr in range(2, 9, 1):
             targets[int(all_values[0])] = 0.99
             # and train
             nn.train(inputs, targets)
-            
+
         duration = time.time() - start_time
         print("run {0} is complete, duration was {1:0.2f} seconds".format(e, duration))
 
@@ -48,4 +48,4 @@ for lr in range(2, 9, 1):
     # get the output = result with max
     label = np.argmax(outputs)
     print(label)
-    
+
